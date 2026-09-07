@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link, NavLink, matchPath, useLocation } from "react-router";
 
 import {
   Sidebar,
@@ -13,26 +14,45 @@ import {
   SidebarRail,
 } from "~/components/ui/sidebar";
 
-// This is sample data.
 const data = {
   navMain: [
     {
-      title: "Львівський ІТ КОЛЕДЖ",
+      title: "Інструменти",
       url: "",
       items: [
         {
           title: "Календаризація",
-          url: "/",
+          url: "/calendarization",
         },
       ],
     },
   ],
 };
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { pathname } = useLocation();
+
   return (
     <Sidebar {...props}>
-      <SidebarHeader></SidebarHeader>
+      <SidebarHeader>
+        <Link to="/" className="rounded-md px-2 py-1 font-medium focus-visible:outline-ring">
+          Львівський ІТ Коледж
+        </Link>
+      </SidebarHeader>
       <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathname === "/"}
+                  render={<NavLink to="/" end />}
+                >
+                  Головна
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
         {data.navMain.map((item) => (
           <SidebarGroup key={item.title}>
             <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
@@ -41,8 +61,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
-                      isActive={true}
-                      render={<a href={item.url} />}
+                      isActive={Boolean(matchPath(`${item.url}/*`, pathname))}
+                      render={<NavLink to={item.url} />}
                     >
                       {item.title}
                     </SidebarMenuButton>

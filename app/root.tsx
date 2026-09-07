@@ -1,10 +1,12 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useMatch,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -41,8 +43,11 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const isHome = useMatch("/");
+  const isCalendarization = useMatch("/calendarization");
+
   return (
-    <html lang="en">
+    <html lang="uk">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -56,6 +61,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <SidebarInset>
               <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
                 <SidebarTrigger className="-ml-1" />
+                <Separator
+                  orientation="vertical"
+                  className="mr-2 data-vertical:h-4 data-vertical:self-auto"
+                />
+                <Breadcrumb aria-label="Навігаційний шлях">
+                  <BreadcrumbList>
+                    <BreadcrumbItem>
+                      {isHome ? (
+                        <BreadcrumbPage>Головна</BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink render={<Link to="/" />}>
+                          Головна
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                    {isCalendarization && (
+                      <>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                          <BreadcrumbPage>Календаризація</BreadcrumbPage>
+                        </BreadcrumbItem>
+                      </>
+                    )}
+                  </BreadcrumbList>
+                </Breadcrumb>
               </header>
               {children}
             </SidebarInset>
