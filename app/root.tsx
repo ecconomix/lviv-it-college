@@ -67,15 +67,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 />
                 <Breadcrumb aria-label="Навігаційний шлях">
                   <BreadcrumbList>
-                    <BreadcrumbItem>
-                      {isHome ? (
-                        <BreadcrumbPage>Головна</BreadcrumbPage>
-                      ) : (
-                        <BreadcrumbLink render={<Link to="/" />}>
-                          Головна
-                        </BreadcrumbLink>
-                      )}
-                    </BreadcrumbItem>
                     {isCalendarization && (
                       <>
                         <BreadcrumbSeparator />

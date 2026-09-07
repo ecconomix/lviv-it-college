@@ -28,31 +28,21 @@ const data = {
     },
   ],
 };
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { pathname } = useLocation();
 
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <Link to="/" className="rounded-md px-2 py-1 font-medium focus-visible:outline-ring">
+        <Link
+          to="/"
+          className="rounded-md px-2 py-1 font-medium focus-visible:outline-ring"
+        >
           Львівський ІТ Коледж
         </Link>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  isActive={pathname === "/"}
-                  render={<NavLink to="/" end />}
-                >
-                  Головна
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
         {data.navMain.map((item) => (
           <SidebarGroup key={item.title}>
             <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
