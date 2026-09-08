@@ -1,5 +1,5 @@
 import type { Term, TimetableSlot } from "../types";
-import { generateDatesForWeekday } from "~/utils/dates";
+import { generateDatesForWeekday } from "./generate-dates-for-weekday";
 
 export type DatedTimetableSlot = {
   date: string;
