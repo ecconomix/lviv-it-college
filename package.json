@@ -6,7 +6,9 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -15,6 +17,7 @@
     "@react-router/serve": "^8",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.2.6",
+    "date-fns": "^4.4.0",
     "isbot": "^5.1.36",
     "lucide-react": "^1.42.0",
     "react": "^19.2.7",
@@ -31,6 +34,7 @@
     "@types/react-dom": "^19.2.3",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
-    "vite": "^8.0.3"
+    "vite": "^8.0.3",
+    "vitest": "^5.0.0"
   }
 }
