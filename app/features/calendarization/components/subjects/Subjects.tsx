@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { useCalendarizationProject } from "../../context/calendarization-project-context/calendarization-project-context";
+import { useCalendarizationProject } from "~/features/calendarization/context/calendarization-project-context/calendarization-project-context";
 import { SubjectRow } from "./components/SubjectRow";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
+import { extractCurriculum } from "~/features/calendarization/services/curriculum-extraction";
+import type { Subject } from "~/features/calendarization/types";
 
 export function Subjects() {
   const { project, addSubject, updateSubject, removeSubject } =
@@ -24,6 +26,18 @@ export function Subjects() {
     });
 
     setName("");
+  };
+
+  const handleCurriculumUpload = async (subject: Subject, file: File) => {
+    const result = await extractCurriculum(file);
+
+    updateSubject({
+      ...subject,
+      curriculum: {
+        fileName: file.name,
+        lessons: result.lessons,
+      },
+    });
   };
 
   return (
@@ -69,6 +83,9 @@ export function Subjects() {
                 })
               }
               onRemove={() => removeSubject(subject.id)}
+              onCurriculumUpload={(file) =>
+                handleCurriculumUpload(subject, file)
+              }
             />
           ))}
         </div>
