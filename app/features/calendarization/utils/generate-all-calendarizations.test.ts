@@ -14,22 +14,25 @@ describe("generateAllCalendarizations", () => {
         {
           id: "iot-security",
           name: "IoT Security",
-          lessons: [
-            {
-              id: "lesson-1",
-              order: 1,
-              type: "lecture",
-              topic: "Introduction",
-              hours: 2,
-            },
-            {
-              id: "lesson-2",
-              order: 2,
-              type: "lab",
-              topic: "Lab 1",
-              hours: 2,
-            },
-          ],
+          curriculum: {
+            fileName: "iot-security.json",
+            lessons: [
+              {
+                id: "lesson-1",
+                order: 1,
+                type: "lecture",
+                topic: "Introduction",
+                hours: 2,
+              },
+              {
+                id: "lesson-2",
+                order: 2,
+                type: "lab",
+                topic: "Lab 1",
+                hours: 2,
+              },
+            ],
+          },
         },
       ],
 
@@ -101,28 +104,35 @@ describe("generateAllCalendarizations", () => {
         {
           id: "iot",
           name: "IoT",
-          lessons: [
-            {
-              id: "iot-1",
-              order: 1,
-              type: "lecture",
-              topic: "IoT Lesson",
-              hours: 2,
-            },
-          ],
+          curriculum: {
+            fileName: "iot.json",
+            lessons: [
+              {
+                id: "iot-1",
+                order: 1,
+                type: "lecture",
+                topic: "IoT Lesson",
+                hours: 2,
+              },
+            ],
+          },
         },
         {
           id: "internet-programming",
           name: "Internet Programming",
-          lessons: [
-            {
-              id: "internet-1",
-              order: 1,
-              type: "practice",
-              topic: "HTTP",
-              hours: 2,
-            },
-          ],
+          curriculum: {
+            fileName: "internet-programming.json",
+
+            lessons: [
+              {
+                id: "internet-1",
+                order: 1,
+                type: "practice",
+                topic: "HTTP",
+                hours: 2,
+              },
+            ],
+          },
         },
       ],
 

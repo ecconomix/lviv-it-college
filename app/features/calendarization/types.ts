@@ -8,10 +8,15 @@ export type CurriculumLesson = {
   hours: number;
 };
 
+export type Curriculum = {
+  fileName: string;
+  lessons: CurriculumLesson[];
+};
+
 export type Subject = {
   id: string;
   name: string;
-  lessons: CurriculumLesson[];
+  curriculum: Curriculum | null;
 };
 
 export type Group = {

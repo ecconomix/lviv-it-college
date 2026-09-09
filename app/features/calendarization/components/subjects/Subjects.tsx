@@ -20,7 +20,7 @@ export function Subjects() {
     addSubject({
       id: crypto.randomUUID(),
       name: trimmedName,
-      lessons: [],
+      curriculum: null,
     });
 
     setName("");

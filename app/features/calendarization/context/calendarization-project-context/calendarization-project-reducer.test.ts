@@ -14,13 +14,13 @@ import { createEmptyCalendarizationProject } from "./calendarization-project";
 const subject1: Subject = {
   id: "subject-1",
   name: "IoT Security",
-  lessons: [],
+  curriculum: null,
 };
 
 const subject2: Subject = {
   id: "subject-2",
   name: "Internet Programming",
-  lessons: [],
+  curriculum: null,
 };
 
 const group1: Group = {

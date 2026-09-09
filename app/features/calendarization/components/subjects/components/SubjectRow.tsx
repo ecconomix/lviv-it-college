@@ -51,7 +51,7 @@ export function SubjectRow({ subject, onRename, onRemove }: SubjectRowProps) {
           <>
             <p className="truncate font-medium">{subject.name}</p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Занять: {subject.lessons.length}
+              Занять: {subject.curriculum?.lessons.length ?? 0}
             </p>
           </>
         )}

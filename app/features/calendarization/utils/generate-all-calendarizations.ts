@@ -18,7 +18,7 @@ export function generateAllCalendarizations(
       term: project.term,
       assignment,
       timetableSlots: project.timetableSlots,
-      curriculumLessons: subject.lessons,
+      curriculumLessons: subject.curriculum?.lessons ?? [],
     });
   });
 }
