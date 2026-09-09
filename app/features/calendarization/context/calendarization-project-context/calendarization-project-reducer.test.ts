@@ -146,6 +146,36 @@ describe("calendarizationProjectReducer", () => {
     expect(result.groups).toEqual([updatedGroup]);
   });
 
+  it("renames only the selected group while preserving references and previous state", () => {
+    const state = createProject({
+      subjects: [subject1],
+      groups: [group1, group2],
+      assignments: [assignment1, assignment3],
+      timetableSlots: [slot1, slot3],
+    });
+    const result = calendarizationProjectReducer(state, {
+      type: "group/update",
+      group: { ...group1, name: "МТ-43" },
+    });
+
+    expect(result.groups).toEqual([{ ...group1, name: "МТ-43" }, group2]);
+    expect(state.groups).toEqual([group1, group2]);
+    expect(result.groups[1]).toBe(group2);
+    expect(result.subjects).toBe(state.subjects);
+    expect(result.assignments).toBe(state.assignments);
+    expect(result.timetableSlots).toBe(state.timetableSlots);
+    expect(result.term).toBe(state.term);
+  });
+
+  it("does not create a group when renaming an unknown ID", () => {
+    const state = createProject({ groups: [group1] });
+    const result = calendarizationProjectReducer(state, {
+      type: "group/update",
+      group: group2,
+    });
+    expect(result).toEqual(state);
+  });
+
   it("adds an assignment", () => {
     const state = createProject();
 
