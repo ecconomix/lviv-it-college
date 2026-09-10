@@ -4,6 +4,7 @@ import { Subjects } from "./components/subjects/Subjects";
 import { Assignments } from "./components/assignments/Assignments";
 import { TermSettings } from "./components/term/TermSettings";
 import { WeeklyTimetable } from "./components/timetable/Timetable";
+import { CalendarizationResults } from "./components/CalendarizationResults";
 
 export const CalendarizationApp = () => {
   return (
@@ -15,6 +16,7 @@ export const CalendarizationApp = () => {
         <Assignments />
         <TermSettings />
         <WeeklyTimetable />
+        <CalendarizationResults />
       </div>
     </div>
   );

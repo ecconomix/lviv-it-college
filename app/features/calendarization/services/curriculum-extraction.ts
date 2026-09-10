@@ -11,36 +11,18 @@ export async function extractCurriculum(
 ): Promise<ExtractCurriculumResult> {
   await new Promise((resolve) => setTimeout(resolve, 500));
 
+  const lessons = Array.from({ length: 34 }, (_, index) => ({
+    id: crypto.randomUUID(),
+    order: index + 1,
+    type: index % 2 === 0 ? ("lecture" as const) : ("lab" as const),
+    topic:
+      index % 2 === 0
+        ? `Тема ${Math.floor(index / 2) + 1}: Основні поняття та принципи`
+        : `Тема ${Math.floor(index / 2) + 1}: Практичне застосування`,
+    hours: index === 374 ? 1 : 2,
+  }));
+
   return {
-    lessons: [
-      {
-        id: crypto.randomUUID(),
-        order: 1,
-        type: "lecture",
-        topic: "Вступ до предмета",
-        hours: 2,
-      },
-      {
-        id: crypto.randomUUID(),
-        order: 2,
-        type: "lab",
-        topic: "Практичне ознайомлення з матеріалом",
-        hours: 2,
-      },
-      {
-        id: crypto.randomUUID(),
-        order: 3,
-        type: "lecture",
-        topic: "Основні поняття та принципи",
-        hours: 2,
-      },
-      {
-        id: crypto.randomUUID(),
-        order: 4,
-        type: "lab",
-        topic: "Застосування основних принципів",
-        hours: 2,
-      },
-    ],
+    lessons,
   };
 }
